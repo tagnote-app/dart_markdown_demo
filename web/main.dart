@@ -4,6 +4,7 @@ import 'package:dart_markdown/dart_markdown.dart' as md;
 
 import 'lib/input_options.dart';
 import 'lib/output_options.dart';
+import 'lib/highlight.dart';
 
 final input = querySelector('#markdown') as TextAreaElement;
 final htmlOutput = querySelector('#html_output') as Element;
@@ -91,13 +92,20 @@ _renderMarkdown() {
   switch (selectedOutput) {
     case 'rawHtml':
       final html = md.renderToHtml(nodes, encodeHtml: true);
-      codeOutput.innerText = html;
+      codeOutput.innerHtml = highlight(
+        html,
+        HljsOptions(language: 'html'),
+      ).value;
       break;
 
     case 'markdownAst':
       final json = JsonEncoder.withIndent("  ")
           .convert(nodes.map((e) => e.toMap()).toList());
-      codeOutput.innerText = json;
+
+      codeOutput.innerHtml = highlight(
+        json,
+        HljsOptions(language: 'json'),
+      ).value;
       break;
 
     default:

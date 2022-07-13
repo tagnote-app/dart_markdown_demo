@@ -60,6 +60,10 @@ header {
   background-color: #eee;
 }
 
+.output-container pre {
+  line-height: 1.3;
+}
+
 /* footer */
 footer {
   display: flex;
