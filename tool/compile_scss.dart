@@ -7,7 +7,7 @@ void main() {
 }
 
 void compileScss() {
-  final inputFile = p.absolute('web/scss/styles.scss');
+  final inputFile = p.absolute('scss/styles.scss');
   final outputFile = p.absolute('web/styles.css');
   final result = sass.compileToResult(inputFile);
 
