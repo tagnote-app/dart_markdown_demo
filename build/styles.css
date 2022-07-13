@@ -1,0 +1,176 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+body {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+}
+
+header {
+  height: 50px;
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .title {
+  font-size: 18px;
+  line-height: 50px;
+  color: #ccc;
+  padding-left: 30px;
+}
+header .github-link {
+  color: #fff;
+  margin-right: 20px;
+}
+
+.container {
+  display: flex;
+  flex-grow: 1;
+  min-height: 0;
+  flex-direction: row;
+}
+
+.input-textarea {
+  box-sizing: border-box;
+  flex: 1;
+  display: block;
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  resize: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: #333;
+  padding: 20px;
+}
+
+.output-container {
+  box-sizing: border-box;
+  padding: 0 20px;
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f3f3f3;
+}
+.output-container .html-output {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.output-container .html-output h1,
+.output-container .html-output h2,
+.output-container .html-output h3,
+.output-container .html-output h4,
+.output-container .html-output h5,
+.output-container .html-output h6 {
+  margin: 0;
+}
+.output-container .html-output table {
+  border-collapse: collapse;
+  border-left: 1px solid;
+  border-top: 1px solid;
+}
+.output-container .html-output th,
+.output-container .html-output td {
+  padding: 5px 10px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+.output-container .html-output th {
+  background-color: #ccc;
+}
+.output-container .html-output code:not(.hljs) {
+  background-color: #ccc;
+  font-size: 0.85em;
+  display: inline-block;
+  padding: 0 3px;
+  line-height: 1.2;
+  border-radius: 4px;
+}
+.output-container .html-output del {
+  color: #dc143c;
+}
+.output-container .html-output pre {
+  overflow-x: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.output-container .html-output pre code {
+  background: none;
+}
+.output-container .html-output .task-list-item {
+  list-style-type: none;
+}
+.output-container .html-output .task-list-item input {
+  margin-left: -1.3em;
+}
+.output-container .html-output blockquote {
+  color: rgba(0, 0, 0, 0.5);
+  padding-left: 1.5em;
+  border-left: 5px solid rgba(0, 0, 0, 0.1);
+  margin: 1.2em 0;
+}
+.output-container > pre {
+  line-height: 1.3;
+}
+
+/* footer */
+footer {
+  display: flex;
+  flex-direction: row;
+  padding: 10px 20px 30px 20px;
+  background-color: #333;
+  color: #eee;
+}
+footer .group-title {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+footer .footer-left {
+  flex-grow: 1;
+}
+footer .footer-left .input-options {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+footer .footer-left .input-options label {
+  display: block;
+  padding-right: 10px;
+  color: #f16262;
+}
+footer .footer-left .input-options label.checked {
+  color: #3fc217;
+}
+footer .footer-right {
+  flex-grow: 0;
+}
+footer .footer-right .output-options {
+  width: 150px;
+}
+footer .footer-right .output-options label {
+  display: block;
+  color: #999;
+}
+footer .footer-right .output-options label.checked {
+  color: #fff;
+  font-weight: bold;
+}
