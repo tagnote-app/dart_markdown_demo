@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk">
-    <title>dart_markdown_demo</title>
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk" />
+    <title>Dart Markdown Demo</title>
+    <link rel="stylesheet" href="styles.css" />
     <script defer src="main.dart.js"></script>
-</head>
+  </head>
 
-<body>
-
-  <div id="output"></div>
-
-</body>
+  <body>
+    <header>
+      <div class="title">Dart Markdown Demo</div>
+    </header>
+    <div class="container">
+      <textarea
+        id="markdown"
+        class="input-textarea"
+        spellcheck="false"
+      ></textarea>
+      <div class="output-container">
+        <div id="html_output"></div>
+        <pre><code id="code_output"></code></pre>
+      </div>
+    </div>
+    <footer>
+      <div class="footer-left">
+        <div class="group-title">Enable</div>
+        <div id="input_options" class="input-options"></div>
+      </div>
+      <div class="footer-right">
+        <div class="group-title">Output</div>
+        <div id="output_options" class="output-options"></div>
+      </div>
+    </footer>
+  </body>
 </html>
