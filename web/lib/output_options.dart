@@ -50,10 +50,20 @@ class OutputOptions {
         ..appendText(option.label);
       container.append(label);
 
+      final checked = value == option.name;
+      if (checked) {
+        label.className = 'checked';
+      }
+
       input
-        ..checked = value == option.name
+        ..checked = checked
         ..name = 'output-option'
-        ..addEventListener('change', (e) {
+        ..onChange.listen((e) {
+          final element = e.currentTarget as InputElement;
+          for (final item in container.children) {
+            item.removeAttribute('class');
+          }
+          element.parent?.className = 'checked';
           value = option.name;
           _saveValue();
           onChange(value);

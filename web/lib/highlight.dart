@@ -18,3 +18,6 @@ class HljsOptions {
 
   external factory HljsOptions({String language});
 }
+
+@JS()
+external void highlightElement(Object block);

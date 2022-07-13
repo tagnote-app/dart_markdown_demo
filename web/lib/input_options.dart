@@ -8,25 +8,25 @@ const _options = {
   SimpleOption('enableHeadingId', 'heading id', false),
   SimpleOption('enableBlockquote', 'blockquote', true),
   SimpleOption('enableFencedBlockquote', 'fenced blockquote', true),
-  SimpleOption('enableIndentedCodeBlock', 'indented code block', true),
+  SimpleOption('enableCodeSpan', 'code span(inline code)', true),
   SimpleOption('enableFencedCodeBlock', 'fenced code block', true),
+  SimpleOption('enableIndentedCodeBlock', 'indented code block', true),
   SimpleOption('enableList', 'list', true),
   SimpleOption('enableParagraph', 'paragraph', true),
   SimpleOption('enableTable', 'table', true),
-  SimpleOption('enableHtmlBlock', 'html block', true),
   SimpleOption(
       'enableLinkReferenceDefinition', 'link reference definition', true),
   SimpleOption('enableThematicBreak', 'thematic break', true),
-  SimpleOption('enableAutolinkExtension', 'autolink extension', true),
+  SimpleOption('enableImage', 'image', true),
+  SimpleOption('enableLink', 'link', true),
   SimpleOption('enableAutolink', 'autolink', true),
+  SimpleOption('enableAutolinkExtension', 'autolink extension', true),
   SimpleOption('enableBackslashEscape', 'backslash escape', true),
-  SimpleOption('enableCodeSpan', 'code span', true),
   SimpleOption('enableEmoji', 'emoji', true),
   SimpleOption('enableEmphasis', 'emphasis', true),
   SimpleOption('enableHardLineBreak', 'hard line break', true),
-  SimpleOption('enableImage', 'image', true),
-  SimpleOption('enableLink', 'link', true),
-  SimpleOption('enableRawHtml', 'raw html', true),
+  SimpleOption('enableRawHtml', 'raw html(inline html)', true),
+  SimpleOption('enableHtmlBlock', 'html block', true),
   SimpleOption('enableStrikethrough', 'strikethrough', true),
   SimpleOption('enableHighlight', 'highlight', true),
   SimpleOption('enableFootnote', 'footnote', false),
@@ -75,13 +75,20 @@ class InputOptions {
         ..appendText(option.label);
       container.append(label);
 
+      final checked = value.contains(option.name);
+      if (checked) {
+        label.className = 'checked';
+      }
+
       input
-        ..checked = value.contains(option.name)
+        ..checked = checked
         ..onChange.listen((e) {
           final checked = (e.currentTarget as InputElement).checked;
           value.remove(option.name);
+          label.removeAttribute('class');
           if (checked == true) {
             value.add(option.name);
+            label.className = 'checked';
           }
           _saveValue();
           onChange(value);

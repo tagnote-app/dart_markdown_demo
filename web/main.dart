@@ -110,6 +110,20 @@ _renderMarkdown() {
 
     default:
       final html = md.renderToHtml(nodes, encodeHtml: true);
-      htmlOutput.setInnerHtml(html);
+      htmlOutput.setInnerHtml(html, treeSanitizer: NullTreeSanitizer());
+
+      for (final block in htmlOutput.querySelectorAll('pre code')) {
+        try {
+          highlightElement(block);
+        } catch (e) {
+          window.console.error('Error highlighting markdown:');
+          window.console.error(e);
+        }
+      }
   }
+}
+
+class NullTreeSanitizer implements NodeTreeSanitizer {
+  @override
+  void sanitizeTree(Node node) {}
 }

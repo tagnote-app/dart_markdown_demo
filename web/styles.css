@@ -19,12 +19,19 @@ body {
 header {
   height: 50px;
   background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 header .title {
   font-size: 18px;
   line-height: 50px;
   color: #ccc;
   padding-left: 30px;
+}
+header .github-link {
+  color: #fff;
+  margin-right: 20px;
 }
 
 .container {
@@ -59,8 +66,9 @@ header .title {
   overflow-y: auto;
   background-color: #eee;
 }
-.output-container .html-output:first-child {
-  margin-top: 0;
+.output-container .html-output {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .output-container .html-output h1,
 .output-container .html-output h2,
@@ -69,6 +77,47 @@ header .title {
 .output-container .html-output h5,
 .output-container .html-output h6 {
   margin: 0;
+}
+.output-container .html-output table {
+  border-collapse: collapse;
+  border-left: 1px solid;
+  border-top: 1px solid;
+}
+.output-container .html-output th,
+.output-container .html-output td {
+  padding: 5px 10px;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+}
+.output-container .html-output th {
+  background-color: #ccc;
+}
+.output-container .html-output code {
+  color: #dc143c;
+  font-size: 0.93em;
+}
+.output-container .html-output pre {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  padding: 1px;
+  -webkit-text-size-adjust: none;
+  overflow-x: auto;
+  white-space: pre;
+}
+.output-container .html-output pre code {
+  color: #333;
+}
+.output-container .html-output .task-list-item {
+  list-style-type: none;
+}
+.output-container .html-output .task-list-item input {
+  margin-left: -1.3em;
+}
+.output-container .html-output blockquote {
+  color: rgba(0, 0, 0, 0.5);
+  padding-left: 1.5em;
+  border-left: 5px solid rgba(0, 0, 0, 0.1);
+  margin: 1.2em 0;
 }
 .output-container > pre {
   line-height: 1.3;
@@ -101,6 +150,10 @@ footer .footer-left .input-options {
 footer .footer-left .input-options label {
   display: block;
   padding-right: 10px;
+  color: #f16262;
+}
+footer .footer-left .input-options label.checked {
+  color: #3fc217;
 }
 footer .footer-right {
   flex-grow: 0;
@@ -110,4 +163,9 @@ footer .footer-right .output-options {
 }
 footer .footer-right .output-options label {
   display: block;
+  color: #999;
+}
+footer .footer-right .output-options label.checked {
+  color: #fff;
+  font-weight: bold;
 }
