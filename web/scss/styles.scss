@@ -65,7 +65,7 @@ header {
   padding: 0 20px;
   flex: 1;
   overflow-y: auto;
-  background-color: #eee;
+  background-color: #f3f3f3;
 
   .html-output {
     margin-top: 10px;
@@ -93,19 +93,24 @@ header {
     th {
       background-color: #ccc;
     }
-    code {
+    code:not(.hljs) {
+      background-color: #ccc;
+      font-size: 0.85em;
+      display: inline-block;
+      padding: 0 3px;
+      line-height: 1.2;
+      border-radius: 4px;
+    }
+    del {
       color: #dc143c;
-      font-size: 0.93em;
     }
     pre {
-      background-color: rgba(0, 0, 0, 0.1);
-      display: block;
-      padding: 1px;
-      -webkit-text-size-adjust: none;
       overflow-x: auto;
-      white-space: pre;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
       code {
-        color: #333;
+        background: none;
       }
     }
     .task-list-item {

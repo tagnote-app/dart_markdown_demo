@@ -111,15 +111,47 @@ _renderMarkdown() {
     default:
       final html = md.renderToHtml(nodes, encodeHtml: true);
       htmlOutput.setInnerHtml(html, treeSanitizer: NullTreeSanitizer());
+      _syntaxHighlight(htmlOutput);
+  }
+}
 
-      for (final block in htmlOutput.querySelectorAll('pre code')) {
-        try {
-          highlightElement(block);
-        } catch (e) {
-          window.console.error('Error highlighting markdown:');
-          window.console.error(e);
-        }
-      }
+void _syntaxHighlight(Element container) {
+  final supported = [
+    'php',
+    'javascript',
+    'typescript',
+    'c',
+    'c++',
+    'c#',
+    'go',
+    'bash',
+    'css',
+    'json',
+    'markdown',
+    'less',
+    'scss',
+    'objective-c',
+    'python',
+    'java',
+    'swift',
+    'ymal',
+    'perl',
+    'r',
+    'sql',
+    'diff',
+    'ruby',
+  ];
+  for (final block in container.querySelectorAll('pre code')) {
+    // Set dart as default language
+    final language =
+        (block.className.split('-')..removeAt(0)).join('-').toLowerCase();
+    if (!supported.contains(language)) {
+      block.className = 'language-dart';
+    }
+
+    try {
+      highlightElement(block);
+    } catch (_) {}
   }
 }
 

@@ -64,7 +64,7 @@ header .github-link {
   padding: 0 20px;
   flex: 1;
   overflow-y: auto;
-  background-color: #eee;
+  background-color: #f3f3f3;
 }
 .output-container .html-output {
   margin-top: 10px;
@@ -92,20 +92,25 @@ header .github-link {
 .output-container .html-output th {
   background-color: #ccc;
 }
-.output-container .html-output code {
+.output-container .html-output code:not(.hljs) {
+  background-color: #ccc;
+  font-size: 0.85em;
+  display: inline-block;
+  padding: 0 3px;
+  line-height: 1.2;
+  border-radius: 4px;
+}
+.output-container .html-output del {
   color: #dc143c;
-  font-size: 0.93em;
 }
 .output-container .html-output pre {
-  background-color: rgba(0, 0, 0, 0.1);
-  display: block;
-  padding: 1px;
-  -webkit-text-size-adjust: none;
   overflow-x: auto;
-  white-space: pre;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 .output-container .html-output pre code {
-  color: #333;
+  background: none;
 }
 .output-container .html-output .task-list-item {
   list-style-type: none;
