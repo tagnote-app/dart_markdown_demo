@@ -3,5 +3,4 @@
 .packages
 
 # Conventional directory for build output.
-docs/packages
 web/styles.css
