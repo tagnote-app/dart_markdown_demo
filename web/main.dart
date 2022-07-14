@@ -85,6 +85,8 @@ _renderMarkdown() {
     enableHighlight: selectedInput.contains('enableHighlight'),
     enableFootnote: selectedInput.contains('enableFootnote'),
     enableTaskList: selectedInput.contains('enableTaskList'),
+    enableSupscript: selectedInput.contains('enableSupscript'),
+    enableSubscript: selectedInput.contains('enableSubscript'),
   );
 
   final nodes = document.parseLines(data);
