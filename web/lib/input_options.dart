@@ -31,6 +31,8 @@ const _options = {
   SimpleOption('enableHighlight', 'highlight', true),
   SimpleOption('enableFootnote', 'footnote', false),
   SimpleOption('enableTaskList', 'task list', false),
+  SimpleOption('enableSubscript', 'subscript', false),
+  SimpleOption('enableSupscript', 'supscript', false),
 };
 
 class InputOptions {
