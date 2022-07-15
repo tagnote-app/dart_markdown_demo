@@ -64,11 +64,25 @@ header .github-link {
 }
 
 .output-container {
+  position: relative;
   box-sizing: border-box;
   padding: 0 20px;
   flex: 1;
   overflow-y: auto;
   background-color: #f3f3f3;
+}
+.output-container .ast-options {
+  display: none;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding: 6px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.output-container .ast-options label {
+  font-size: 13px;
+  display: block;
 }
 .output-container .html-output {
   margin-top: 10px;

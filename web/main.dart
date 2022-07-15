@@ -9,9 +9,13 @@ import 'lib/highlight.dart';
 final input = querySelector('#markdown') as TextAreaElement;
 final htmlOutput = querySelector('#html_output') as Element;
 final codeOutput = querySelector('#code_output') as Element;
+final astOptions = querySelector('#ast_options') as Element;
 
 late InputOptions inputOptions;
 late OutputOptions outputOptions;
+
+bool hideMarkers = window.localStorage['hideMarkers'] == 'true';
+bool hideLocation = window.localStorage['hideLocation'] == 'true';
 
 void main() {
   inputOptions = InputOptions(
@@ -26,12 +30,40 @@ void main() {
     onChange: (String value) {
       htmlOutput.setInnerHtml('');
       codeOutput.innerText = '';
+      _toggleAstOptions();
       _renderMarkdown();
     },
   );
 
   _initInput();
   _renderMarkdown();
+  _toggleAstOptions();
+}
+
+void _toggleAstOptions() {
+  if (outputOptions.value == 'markdownAst') {
+    astOptions.style.display = 'block';
+    final hideMarkersElement = querySelector('#hide_markers') as InputElement;
+    final hideLocationElement = querySelector('#hide_location') as InputElement;
+
+    hideMarkersElement
+      ..onChange.listen((event) {
+        hideMarkers = hideMarkersElement.checked == true;
+        window.localStorage['hideMarkers'] = hideMarkers.toString();
+        _renderMarkdown();
+      })
+      ..checked = hideMarkers;
+
+    hideLocationElement
+      ..onChange.listen((event) {
+        hideLocation = hideLocationElement.checked == true;
+        window.localStorage['hideLocation'] = hideLocation.toString();
+        _renderMarkdown();
+      })
+      ..checked = hideLocation;
+  } else {
+    astOptions.style.display = 'none';
+  }
 }
 
 void _initInput() {
@@ -102,8 +134,10 @@ _renderMarkdown() {
       break;
 
     case 'markdownAst':
-      final json = JsonEncoder.withIndent("  ")
-          .convert(nodes.map((e) => e.toMap()).toList());
+      final map = nodes.map((e) => e.toMap()).toList();
+      _removeMeta(map);
+
+      final json = JsonEncoder.withIndent("  ").convert(map);
 
       codeOutput.innerHtml = highlight(
         json,
@@ -155,6 +189,33 @@ void _syntaxHighlight(Element container) {
     try {
       highlightElement(block);
     } catch (_) {}
+  }
+}
+
+_removeMeta(List<Map<String, dynamic>> nodes) {
+  if (!hideMarkers && !hideLocation) {
+    return;
+  }
+  for (var i = 0; i < nodes.length; i++) {
+    final node = nodes[i];
+    if (hideLocation) {
+      node.remove('start');
+      node.remove('end');
+      if (node['markers'] != null && node['markers'].isNotEmpty) {
+        for (final marker in node['markers']) {
+          marker.remove('start');
+          marker.remove('end');
+        }
+      }
+    }
+
+    if (hideMarkers) {
+      node.remove('markers');
+    }
+
+    if (node['children'] != null) {
+      _removeMeta(node['children']);
+    }
   }
 }
 
