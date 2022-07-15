@@ -32,7 +32,8 @@ const _options = {
   SimpleOption('enableFootnote', 'footnote', false),
   SimpleOption('enableTaskList', 'task list', false),
   SimpleOption('enableSubscript', 'subscript', false),
-  SimpleOption('enableSupscript', 'supscript', false),
+  SimpleOption('enableSuperscript', 'supscript', false),
+  SimpleOption('enableKbd', 'kbd', false),
 };
 
 class InputOptions {
