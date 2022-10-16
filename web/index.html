@@ -25,11 +25,14 @@
       </a>
     </header>
     <div class="container">
-      <textarea
-        id="markdown"
-        class="input-textarea"
-        spellcheck="false"
-      ></textarea>
+      <div class="input-container">
+        <textarea
+          id="markdown"
+          class="input-textarea"
+          spellcheck="false"
+        ></textarea>
+        <button id="beautify_button" class="beautify-button">Beautify</button>
+      </div>
       <div class="output-container">
         <div id="ast_options" class="ast-options">
           <label>

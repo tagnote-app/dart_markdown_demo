@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
 import 'package:dart_markdown/dart_markdown.dart' as md;
+import 'package:markdown_prettier/markdown_prettier.dart';
 
 import 'lib/input_options.dart';
 import 'lib/output_options.dart';
@@ -38,6 +39,7 @@ void main() {
   _initInput();
   _renderMarkdown();
   _toggleAstOptions();
+  _implementPrettier();
 }
 
 void _toggleAstOptions() {
@@ -88,7 +90,7 @@ _renderMarkdown() {
   final selectedOutput = outputOptions.value;
   final data = input.value!;
 
-  final document = md.Document(
+  final document = md.Markdown(
     enableAtxHeading: selectedInput.contains('enableAtxHeading'),
     enableSetextHeading: selectedInput.contains('enableSetextHeading'),
     enableHeadingId: selectedInput.contains('enableHeadingId'),
@@ -122,11 +124,11 @@ _renderMarkdown() {
     enableKbd: selectedInput.contains('enableKbd'),
   );
 
-  final nodes = document.parseLines(data);
+  final nodes = document.parse(data);
 
   switch (selectedOutput) {
     case 'rawHtml':
-      final html = md.renderToHtml(nodes, encodeHtml: true);
+      final html = nodes.toHtml(encodeHtml: true);
       codeOutput.innerHtml = highlight(
         html,
         HljsOptions(language: 'html'),
@@ -146,7 +148,7 @@ _renderMarkdown() {
       break;
 
     default:
-      final html = md.renderToHtml(nodes, encodeHtml: true);
+      final html = nodes.toHtml(encodeHtml: true);
       htmlOutput.setInnerHtml(html, treeSanitizer: NullTreeSanitizer());
       _syntaxHighlight(htmlOutput);
   }
@@ -217,6 +219,18 @@ _removeMeta(List<Map<String, dynamic>> nodes) {
       _removeMeta(node['children']);
     }
   }
+}
+
+void _implementPrettier() {
+  final button = querySelector('#beautify_button') as ButtonElement;
+  button.addEventListener('click', (event) {
+    final text = input.value;
+    if (text == null || text.isEmpty) {
+      return;
+    }
+
+   input.value = MarkdownPrettier().parse(text);
+   });
 }
 
 class NullTreeSanitizer implements NodeTreeSanitizer {
